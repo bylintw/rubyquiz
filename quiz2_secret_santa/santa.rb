@@ -42,9 +42,9 @@ class Santa
       smtp.enable_starttls
 
       santa = k.split(' ')
-      person = v.split(' ')
-      #to = santa[2].gsub('<', '').gsub('>', '')
-      msg = "Hi " + santa[0] + ' ' + santa[1] + ",\r\n\r\n    Your person is: " + person[0] + ' ' + person[1] + '!'
+      person = v
+      to = santa[2].gsub(/[<>]/, '').gsub('>', '')
+      msg = "Hi " + santa[0] + ' ' + santa[1] + ",\r\n\r\n    Your person is: " + person + '!'
       mail = "To: #{to}\r\n" + "From: #{from}\r\n" + "Subject: #{subject}\r\n" + "\r\n" + msg
 
       smtp.start('gmail.com', from, password, :plain) do
