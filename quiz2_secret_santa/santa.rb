@@ -33,8 +33,7 @@ class Santa
   end
 
   def email_santa(santa_hash, from, password)
-    to = from
-    smtp_host = "smtp.gmail.com"
+    smtp_host = 'smtp.gmail.com'
     subject = "Secret Santa"
 
     santa_hash.each_pair { |k, v|
@@ -43,8 +42,8 @@ class Santa
 
       santa = k.split(' ')
       person = v
-      to = santa[2].gsub(/[<>]/, '').gsub('>', '')
-      msg = "Hi " + santa[0] + ' ' + santa[1] + ",\r\n\r\n    Your person is: " + person + '!'
+      to = santa[2].gsub(/[<>]/, '')
+      msg = 'Hi ' + santa[0] + ' ' + santa[1] + ",\r\n\r\n    Your person is: " + person + '!'
       mail = "To: #{to}\r\n" + "From: #{from}\r\n" + "Subject: #{subject}\r\n" + "\r\n" + msg
 
       smtp.start('gmail.com', from, password, :plain) do
